@@ -1,0 +1,55 @@
+<html>
+
+<script>
+    async function calculateInterest() {
+        const principal = document.getElementById('principal').value;
+        const rate = document.getElementById('rate').value;
+        const time = document.getElementById('time').value;
+
+        console.log('Fetching data...');
+
+        try {
+            const response = await fetch("http://localhost:3001/interest?principal=" + principal + "&rate=" + rate + "&time=" + time);
+            const responseJSON = await response.json();
+            console.log('Response:', responseJSON);
+
+            const total = responseJSON.total;
+            const interest = responseJSON.interest;
+            const element = document.getElementById("finalAnswer");
+
+            element.innerHTML = `Total amount: ${total} <br> Interest: ${interest}`;
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+</script>
+
+   <!--  <style>
+        .container{
+            width: 100%;
+            height: 100px;
+            background-color: red;
+            margin-top: 10px;
+        }
+    </style> -->
+    <body>
+        
+     <input id ="firstNUmber" type="text" placeholder="FIrst number">
+        <br>
+        <br>
+        <input id ="secondNUmber" type="text" placeholder="Second number">
+        <br>
+        <br> 
+<!--         <div class="container">
+            hi rh
+        </div>
+        <div class="container">
+            klnrglkn
+        </div> -->
+        <button onclick="populateDiv()">Cal sum</button>
+        <br><br>
+        <div id="finalSUm">
+
+        </div>
+    </body>
+</html>
